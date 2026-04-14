@@ -5,8 +5,23 @@ def create_project_structure(project_name: str, base_dir: Path = None) -> None:
     base = base_dir if base_dir else Path.cwd()
     dir_path = base / project_name
     dir_path.mkdir(exist_ok=True, parents = True)
-    requirements = dir_path / "requirements.txt"
-    requirements.write_text("pytest")
+    pyproject = dir_path / "pyproject.toml"
+    pyproject.write_text(
+        f'[project]\n'
+        f'name = "{project_name}"\n'
+        f'version = "0.1.0"\n'
+        f'description = ""\n'
+        f'requires-python = ">=3.10"\n'
+        f'dependencies = []\n'
+        f'\n'
+        f'[project.optional-dependencies]\n'
+        f'dev = [\n'
+        f'    "pytest"\n'
+        f']\n'
+        f'\n'
+        f'[tool.pytest.ini_options]\n'
+        f'testpaths = ["tests"]\n'
+    )
     readme = dir_path / "README.md"
     readme.write_text(f"# {project_name}")
     gitignore = dir_path / ".gitignore"

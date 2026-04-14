@@ -6,7 +6,7 @@ def test_creates_expected_files(tmp_path):
     create_project_structure("testproject", base_dir=tmp_path)
     project = tmp_path / "testproject"
     assert (project / "README.md").exists()
-    assert (project / "requirements.txt").exists()
+    assert (project / "pyproject.toml").exists()
     assert (project / "src" / "main.py").exists()
     assert (project / "tests" / "test_basic.py").exists()
 

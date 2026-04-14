@@ -1,0 +1,17 @@
+[project]
+name = "scaffy"
+version = "0.1.0"
+description = "CLI tool for automating Python project setup"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest"
+]
+
+[project.scripts]
+scaffy = "src.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
