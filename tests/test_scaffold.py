@@ -3,7 +3,7 @@ from src.docker import create_dockerfile
 from src.github_tools import create_CICD
 
 def test_creates_expected_files(tmp_path):
-    create_project_structure("testproject", tmp_path)
+    create_project_structure("testproject", base_dir=tmp_path)
     project = tmp_path / "testproject"
     assert (project / "README.md").exists()
     assert (project / "requirements.txt").exists()
@@ -11,7 +11,7 @@ def test_creates_expected_files(tmp_path):
     assert (project / "tests" / "test_basic.py").exists()
 
 def test_readme_contains_project_name(tmp_path):
-    create_project_structure("myapp", tmp_path)
+    create_project_structure("myapp", base_dir=tmp_path)
     content = (tmp_path / "myapp" / "README.md").read_text()
     assert "myapp" in content
 

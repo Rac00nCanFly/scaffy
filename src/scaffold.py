@@ -1,8 +1,9 @@
 from pathlib import Path
-from github_tools import create_CICD
+from .github_tools import create_CICD
 
-def create_project_structure(project_name: str) -> None:
-    dir_path = Path.cwd() / f"{project_name}"
+def create_project_structure(project_name: str, base_dir: Path = None) -> None:
+    base = base_dir if base_dir else Path.cwd()
+    dir_path = base / project_name
     dir_path.mkdir(exist_ok=True, parents = True)
     requirements = dir_path / "requirements.txt"
     requirements.write_text("pytest")
